@@ -1,67 +1,50 @@
 name: Cypress Tests
 
-# Quando rodar os testes
 on:
   push:
-    branches: [ main, develop ]  # Toda push no main ou develop
+    branches: [ main, develop ]
   pull_request:
-    branches: [ main ]           # Toda PR para o main
-  workflow_dispatch:             # Permite rodar manualmente
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   cypress-run:
-    runs-on: ubuntu-latest      # Máquina Linux (mais rápida e barata)
+    runs-on: ubuntu-latest
     steps:
-      # 1. Clone o repositório
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 2. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'       # Sua versão do Node
-          cache: 'npm'             # Cache das dependências
+          node-version: '22'
+          cache: 'npm'
 
-      # 3. Instale dependências
       - name: Install dependencies
-        run: npm ci                # Mais rápido que npm install
+        run: npm ci
 
-      # 4. Rode os testes Cypress
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          build: npm run build    # Se tiver build (opcional)
-          start: npm start        # Se o site precisar de servidor (opcional)
-          wait-on: 'https://www.automationpratice.com.br/'  # Espera o site carregar
-          wait-on-timeout: 60     # Timeout de 60s
-          browser: chrome         # Usa Chrome (mais estável)
-          record: false           # Mude para true se tiver Cypress Cloud
+          browser: chrome
 
-      # 5. Gere relatório Mochawesome
       - name: Generate Mochawesome Report
         run: |
           npm run report:merge
           npm run report:generate
 
-      # 6. Upload do relatório como artefato
       - name: Upload Report Artifact
         uses: actions/upload-artifact@v4
         with:
           name: cypress-report
           path: cypress/reports/
-          retention-days: 30  # Mantém por 30 dias
+          retention-days: 30
 
-      # 7. Se falhar, para o build
-      - name: Fail on Cypress failures
-        if: failure()
-        run: exit 1
-
-# 8. Notificação (opcional)
   notify:
-    needs: cypress-run  # Só roda se os testes passarem
+    needs: cypress-run
     runs-on: ubuntu-latest
-    if: always()  # Sempre roda (sucesso ou falha)
+    if: always()
     steps:
-      - name: Notify Slack/Email
-        run: echo "Testes finalizados! Status: ${{ job.status }}"
+      - name: Notify Status
+        run: |
+          echo 'Testes finalizados! Status: ${{ job.status }}'

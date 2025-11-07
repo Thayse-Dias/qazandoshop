@@ -1,16 +1,49 @@
 {
   "name": "qazandoshop",
   "version": "1.0.0",
-  "description": "",
+  "description": "Projeto de automação E2E com Cypress - QazandoShop",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "test:headless": "cypress run",
+    "test:headed": "cypress run --headed",
+    "test:browser": "cypress run --browser chrome",
+    "test:spec": "cypress run --spec",
+    "open": "cypress open",
+    "open:mobile": "cypress open --config viewportWidth=375,viewportHeight=667",
+
+    "report": "cypress run --reporter mochawesome",
+    "report:open": "start cypress/reports/index.html",
+    "report:clean": "rm -rf cypress/reports/ || del /s /q cypress\\reports\\",
+    "report:merge": "mochawesome-merge \"cypress/reports/mochawesome_*.json\" > cypress/reports/merged-report.json",
+    "report:generate": "marge cypress/reports/merged-report.json --reportDir cypress/reports --inline --reportTitle \"QazandoShop - Testes Automatizados\" --reportPageTitle \"Relatório de Testes - Thayse Maria Dias Fonseca\" --charts true --showHooks always --code true",
+    "report:full": "npm run report:clean && npm run report && npm run report:merge && npm run report:generate && npm run report:open",
+
+    "clean": "npm run report:clean && rm -rf cypress/screenshots/ cypress/videos/ || del /s /q cypress\\screenshots\\ cypress\\videos\\",
+    "test:clean": "npm run clean && npm run test",
+
+    "api": "cypress run --spec 'cypress/e2e/testedeAPI/auth.cy.js'",
+    "ui": "cypress run --spec 'cypress/e2e/login.cy.js,cypress/e2e/main.cy.js'",
+    "smoke": "cypress run --spec 'cypress/e2e/login.cy.js,cypress/e2e/main.cy.js'",
+
+    "debug": "cypress open --e2e --config video=true,screenshotOnRunFailure=true",
+    "record": "cypress run --record --key SEU_DASHBOARD_KEY"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "cypress",
+    "automation",
+    "e2e",
+    "testing",
+    "qa",
+    "mochawesome"
+  ],
+  "author": "Thayse Maria Dias Fonseca",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "cypress": "^15.6.0"
+    "cypress": "^15.6.0",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
   }
 }

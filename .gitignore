@@ -1,0 +1,5 @@
+# .gitignore
+cypress/screenshots/
+cypress/videos/
+cypress/reports/
+!cypress.config.js

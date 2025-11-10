@@ -1,11 +1,12 @@
 # QazandoShop - Automação E2E com Cypress
 
-https://img.shields.io/badge/Cypress-15.6.0-green?logo=cypress
-https://img.shields.io/badge/Node.js-v22.12.0-green?logo=node.js
-https://img.shields.io/badge/Mochawesome-7.1.4-blue
-https://img.shields.io/badge/Lighthouse-Performance%252037-red
-https://img.shields.io/badge/tests-8%2520passing-brightgreen
-https://github.com/Thayse-Dias/qazandoshop/actions/workflows/cypress.yml/badge.svg
+[![Cypress](https://img.shields.io/badge/Cypress-15.6.0-green?logo=cypress)](https://www.cypress.io/)
+[![Node.js](https://img.shields.io/badge/Node.js-v22.12.0-green?logo=node.js)](https://nodejs.org/)
+[![Mochawesome](https://img.shields.io/badge/Mochawesome-7.1.4-blue)](https://www.npmjs.com/package/mochawesome)
+[![Lighthouse](https://img.shields.io/badge/Lighthouse-Performance%2037-red)](https://developers.google.com/web/tools/lighthouse)
+[![Tests](https://img.shields.io/badge/tests-8%20passing-brightgreen)](https://github.com/Thayse-Dias/qazandoshop/actions)
+[![CI/CD](https://github.com/Thayse-Dias/qazandoshop/actions/workflows/cypress.yml/badge.svg)](https://github.com/Thayse-Dias/qazandoshop/actions)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Thayse_Dias-blue?logo=linkedin)](https://www.linkedin.com/in/thaysedias2526/)
 
 > **Projeto de automação E2E com testes de UI, API, Performance, relatórios profissionais e CI/CD.**  
 > **Autora**: **Thayse Maria Dias Fonseca** — *QA em formação*
